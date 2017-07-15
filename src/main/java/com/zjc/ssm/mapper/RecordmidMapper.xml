@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjc.ssm.mapper.RecordmidMapper" >
+  <resultMap id="BaseResultMap" type="com.zjc.ssm.pojo.Recordmid" >
+    <id column="RECORDMIDUNID" property="recordmidunid" jdbcType="INTEGER" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="PIPROFESSION" property="piprofession" jdbcType="VARCHAR" />
+    <result column="PITYPE" property="pitype" jdbcType="VARCHAR" />
+    <result column="PIPLANNUM" property="piplannum" jdbcType="VARCHAR" />
+    <result column="PIPLANDATE" property="piplandate" jdbcType="DATE" />
+    <result column="PIBY" property="piby" jdbcType="VARCHAR" />
+    <result column="ENTERBY" property="enterby" jdbcType="VARCHAR" />
+    <result column="ENTERDATE" property="enterdate" jdbcType="TIMESTAMP" />
+    <result column="PIRECORDNUM" property="pirecordnum" jdbcType="VARCHAR" />
+    <result column="ASSETNUM" property="assetnum" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+    <result column="PIDATE" property="pidate" jdbcType="DATE" />
+    <result column="ISSTOP" property="isstop" jdbcType="INTEGER" />
+    <result column="PLATEFORM" property="plateform" jdbcType="VARCHAR" />
+    <result column="PIRECORDLINENUM" property="pirecordlinenum" jdbcType="INTEGER" />
+    <result column="PARTLOC" property="partloc" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="METHOD" property="method" jdbcType="VARCHAR" />
+    <result column="STANDARD" property="standard" jdbcType="VARCHAR" />
+    <result column="PERIOD" property="period" jdbcType="VARCHAR" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="RECORD" property="record" jdbcType="VARCHAR" />
+    <result column="UNDONE" property="undone" jdbcType="INTEGER" />
+    <result column="READSTATUS" property="readstatus" jdbcType="INTEGER" />
+    <result column="READTIME" property="readtime" jdbcType="TIMESTAMP" />
+    <result column="OPSTATUS" property="opstatus" jdbcType="VARCHAR" />
+    <result column="SITEID" property="siteid" jdbcType="VARCHAR" />
+    <result column="ORGID" property="orgid" jdbcType="VARCHAR" />
+    <result column="UPLOADFLAG" property="uploadflag" jdbcType="BIT" />
+    <result column="UPLOADTIME" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="ACTION" property="action" jdbcType="VARCHAR" />
+    <result column="ACTIONTIME" property="actiontime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    RECORDMIDUNID, DEPARTMENT, PIPROFESSION, PITYPE, PIPLANNUM, PIPLANDATE, PIBY, ENTERBY, 
+    ENTERDATE, PIRECORDNUM, ASSETNUM, LOCATION, PIDATE, ISSTOP, PLATEFORM, PIRECORDLINENUM, 
+    PARTLOC, CONTENT, METHOD, STANDARD, PERIOD, RESULT, RECORD, UNDONE, READSTATUS, READTIME, 
+    OPSTATUS, SITEID, ORGID, UPLOADFLAG, UPLOADTIME, ACTION, ACTIONTIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zjc.ssm.pojo.RecordmidExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from recordmid
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recordmid
+    where RECORDMIDUNID = #{recordmidunid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recordmid
+    where RECORDMIDUNID = #{recordmidunid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zjc.ssm.pojo.RecordmidExample" >
+    delete from recordmid
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjc.ssm.pojo.Recordmid" >
+    insert into recordmid (RECORDMIDUNID, DEPARTMENT, PIPROFESSION, 
+      PITYPE, PIPLANNUM, PIPLANDATE, 
+      PIBY, ENTERBY, ENTERDATE, 
+      PIRECORDNUM, ASSETNUM, LOCATION, 
+      PIDATE, ISSTOP, PLATEFORM, 
+      PIRECORDLINENUM, PARTLOC, CONTENT, 
+      METHOD, STANDARD, PERIOD, 
+      RESULT, RECORD, UNDONE, 
+      READSTATUS, READTIME, OPSTATUS, 
+      SITEID, ORGID, UPLOADFLAG, 
+      UPLOADTIME, ACTION, ACTIONTIME
+      )
+    values (#{recordmidunid,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{piprofession,jdbcType=VARCHAR}, 
+      #{pitype,jdbcType=VARCHAR}, #{piplannum,jdbcType=VARCHAR}, #{piplandate,jdbcType=DATE}, 
+      #{piby,jdbcType=VARCHAR}, #{enterby,jdbcType=VARCHAR}, #{enterdate,jdbcType=TIMESTAMP}, 
+      #{pirecordnum,jdbcType=VARCHAR}, #{assetnum,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{pidate,jdbcType=DATE}, #{isstop,jdbcType=INTEGER}, #{plateform,jdbcType=VARCHAR}, 
+      #{pirecordlinenum,jdbcType=INTEGER}, #{partloc,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{method,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, #{period,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, #{undone,jdbcType=INTEGER}, 
+      #{readstatus,jdbcType=INTEGER}, #{readtime,jdbcType=TIMESTAMP}, #{opstatus,jdbcType=VARCHAR}, 
+      #{siteid,jdbcType=VARCHAR}, #{orgid,jdbcType=VARCHAR}, #{uploadflag,jdbcType=BIT}, 
+      #{uploadtime,jdbcType=TIMESTAMP}, #{action,jdbcType=VARCHAR}, #{actiontime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjc.ssm.pojo.Recordmid" >
+    insert into recordmid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordmidunid != null" >
+        RECORDMIDUNID,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="piprofession != null" >
+        PIPROFESSION,
+      </if>
+      <if test="pitype != null" >
+        PITYPE,
+      </if>
+      <if test="piplannum != null" >
+        PIPLANNUM,
+      </if>
+      <if test="piplandate != null" >
+        PIPLANDATE,
+      </if>
+      <if test="piby != null" >
+        PIBY,
+      </if>
+      <if test="enterby != null" >
+        ENTERBY,
+      </if>
+      <if test="enterdate != null" >
+        ENTERDATE,
+      </if>
+      <if test="pirecordnum != null" >
+        PIRECORDNUM,
+      </if>
+      <if test="assetnum != null" >
+        ASSETNUM,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+      <if test="pidate != null" >
+        PIDATE,
+      </if>
+      <if test="isstop != null" >
+        ISSTOP,
+      </if>
+      <if test="plateform != null" >
+        PLATEFORM,
+      </if>
+      <if test="pirecordlinenum != null" >
+        PIRECORDLINENUM,
+      </if>
+      <if test="partloc != null" >
+        PARTLOC,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="method != null" >
+        METHOD,
+      </if>
+      <if test="standard != null" >
+        STANDARD,
+      </if>
+      <if test="period != null" >
+        PERIOD,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+      <if test="record != null" >
+        RECORD,
+      </if>
+      <if test="undone != null" >
+        UNDONE,
+      </if>
+      <if test="readstatus != null" >
+        READSTATUS,
+      </if>
+      <if test="readtime != null" >
+        READTIME,
+      </if>
+      <if test="opstatus != null" >
+        OPSTATUS,
+      </if>
+      <if test="siteid != null" >
+        SITEID,
+      </if>
+      <if test="orgid != null" >
+        ORGID,
+      </if>
+      <if test="uploadflag != null" >
+        UPLOADFLAG,
+      </if>
+      <if test="uploadtime != null" >
+        UPLOADTIME,
+      </if>
+      <if test="action != null" >
+        ACTION,
+      </if>
+      <if test="actiontime != null" >
+        ACTIONTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordmidunid != null" >
+        #{recordmidunid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="piprofession != null" >
+        #{piprofession,jdbcType=VARCHAR},
+      </if>
+      <if test="pitype != null" >
+        #{pitype,jdbcType=VARCHAR},
+      </if>
+      <if test="piplannum != null" >
+        #{piplannum,jdbcType=VARCHAR},
+      </if>
+      <if test="piplandate != null" >
+        #{piplandate,jdbcType=DATE},
+      </if>
+      <if test="piby != null" >
+        #{piby,jdbcType=VARCHAR},
+      </if>
+      <if test="enterby != null" >
+        #{enterby,jdbcType=VARCHAR},
+      </if>
+      <if test="enterdate != null" >
+        #{enterdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pirecordnum != null" >
+        #{pirecordnum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetnum != null" >
+        #{assetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="pidate != null" >
+        #{pidate,jdbcType=DATE},
+      </if>
+      <if test="isstop != null" >
+        #{isstop,jdbcType=INTEGER},
+      </if>
+      <if test="plateform != null" >
+        #{plateform,jdbcType=VARCHAR},
+      </if>
+      <if test="pirecordlinenum != null" >
+        #{pirecordlinenum,jdbcType=INTEGER},
+      </if>
+      <if test="partloc != null" >
+        #{partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="record != null" >
+        #{record,jdbcType=VARCHAR},
+      </if>
+      <if test="undone != null" >
+        #{undone,jdbcType=INTEGER},
+      </if>
+      <if test="readstatus != null" >
+        #{readstatus,jdbcType=INTEGER},
+      </if>
+      <if test="readtime != null" >
+        #{readtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opstatus != null" >
+        #{opstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadflag != null" >
+        #{uploadflag,jdbcType=BIT},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="actiontime != null" >
+        #{actiontime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjc.ssm.pojo.RecordmidExample" resultType="java.lang.Integer" >
+    select count(*) from recordmid
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update recordmid
+    <set >
+      <if test="record.recordmidunid != null" >
+        RECORDMIDUNID = #{record.recordmidunid,jdbcType=INTEGER},
+      </if>
+      <if test="record.department != null" >
+        DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piprofession != null" >
+        PIPROFESSION = #{record.piprofession,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pitype != null" >
+        PITYPE = #{record.pitype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piplannum != null" >
+        PIPLANNUM = #{record.piplannum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.piplandate != null" >
+        PIPLANDATE = #{record.piplandate,jdbcType=DATE},
+      </if>
+      <if test="record.piby != null" >
+        PIBY = #{record.piby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterby != null" >
+        ENTERBY = #{record.enterby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterdate != null" >
+        ENTERDATE = #{record.enterdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pirecordnum != null" >
+        PIRECORDNUM = #{record.pirecordnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetnum != null" >
+        ASSETNUM = #{record.assetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null" >
+        LOCATION = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pidate != null" >
+        PIDATE = #{record.pidate,jdbcType=DATE},
+      </if>
+      <if test="record.isstop != null" >
+        ISSTOP = #{record.isstop,jdbcType=INTEGER},
+      </if>
+      <if test="record.plateform != null" >
+        PLATEFORM = #{record.plateform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pirecordlinenum != null" >
+        PIRECORDLINENUM = #{record.pirecordlinenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.partloc != null" >
+        PARTLOC = #{record.partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.method != null" >
+        METHOD = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standard != null" >
+        STANDARD = #{record.standard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.period != null" >
+        PERIOD = #{record.period,jdbcType=VARCHAR},
+      </if>
+      <if test="record.result != null" >
+        RESULT = #{record.result,jdbcType=VARCHAR},
+      </if>
+      <if test="record.record != null" >
+        RECORD = #{record.record,jdbcType=VARCHAR},
+      </if>
+      <if test="record.undone != null" >
+        UNDONE = #{record.undone,jdbcType=INTEGER},
+      </if>
+      <if test="record.readstatus != null" >
+        READSTATUS = #{record.readstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.readtime != null" >
+        READTIME = #{record.readtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.opstatus != null" >
+        OPSTATUS = #{record.opstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteid != null" >
+        SITEID = #{record.siteid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        ORGID = #{record.orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadflag != null" >
+        UPLOADFLAG = #{record.uploadflag,jdbcType=BIT},
+      </if>
+      <if test="record.uploadtime != null" >
+        UPLOADTIME = #{record.uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.action != null" >
+        ACTION = #{record.action,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actiontime != null" >
+        ACTIONTIME = #{record.actiontime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update recordmid
+    set RECORDMIDUNID = #{record.recordmidunid,jdbcType=INTEGER},
+      DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      PIPROFESSION = #{record.piprofession,jdbcType=VARCHAR},
+      PITYPE = #{record.pitype,jdbcType=VARCHAR},
+      PIPLANNUM = #{record.piplannum,jdbcType=VARCHAR},
+      PIPLANDATE = #{record.piplandate,jdbcType=DATE},
+      PIBY = #{record.piby,jdbcType=VARCHAR},
+      ENTERBY = #{record.enterby,jdbcType=VARCHAR},
+      ENTERDATE = #{record.enterdate,jdbcType=TIMESTAMP},
+      PIRECORDNUM = #{record.pirecordnum,jdbcType=VARCHAR},
+      ASSETNUM = #{record.assetnum,jdbcType=VARCHAR},
+      LOCATION = #{record.location,jdbcType=VARCHAR},
+      PIDATE = #{record.pidate,jdbcType=DATE},
+      ISSTOP = #{record.isstop,jdbcType=INTEGER},
+      PLATEFORM = #{record.plateform,jdbcType=VARCHAR},
+      PIRECORDLINENUM = #{record.pirecordlinenum,jdbcType=INTEGER},
+      PARTLOC = #{record.partloc,jdbcType=VARCHAR},
+      CONTENT = #{record.content,jdbcType=VARCHAR},
+      METHOD = #{record.method,jdbcType=VARCHAR},
+      STANDARD = #{record.standard,jdbcType=VARCHAR},
+      PERIOD = #{record.period,jdbcType=VARCHAR},
+      RESULT = #{record.result,jdbcType=VARCHAR},
+      RECORD = #{record.record,jdbcType=VARCHAR},
+      UNDONE = #{record.undone,jdbcType=INTEGER},
+      READSTATUS = #{record.readstatus,jdbcType=INTEGER},
+      READTIME = #{record.readtime,jdbcType=TIMESTAMP},
+      OPSTATUS = #{record.opstatus,jdbcType=VARCHAR},
+      SITEID = #{record.siteid,jdbcType=VARCHAR},
+      ORGID = #{record.orgid,jdbcType=VARCHAR},
+      UPLOADFLAG = #{record.uploadflag,jdbcType=BIT},
+      UPLOADTIME = #{record.uploadtime,jdbcType=TIMESTAMP},
+      ACTION = #{record.action,jdbcType=VARCHAR},
+      ACTIONTIME = #{record.actiontime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjc.ssm.pojo.Recordmid" >
+    update recordmid
+    <set >
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="piprofession != null" >
+        PIPROFESSION = #{piprofession,jdbcType=VARCHAR},
+      </if>
+      <if test="pitype != null" >
+        PITYPE = #{pitype,jdbcType=VARCHAR},
+      </if>
+      <if test="piplannum != null" >
+        PIPLANNUM = #{piplannum,jdbcType=VARCHAR},
+      </if>
+      <if test="piplandate != null" >
+        PIPLANDATE = #{piplandate,jdbcType=DATE},
+      </if>
+      <if test="piby != null" >
+        PIBY = #{piby,jdbcType=VARCHAR},
+      </if>
+      <if test="enterby != null" >
+        ENTERBY = #{enterby,jdbcType=VARCHAR},
+      </if>
+      <if test="enterdate != null" >
+        ENTERDATE = #{enterdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pirecordnum != null" >
+        PIRECORDNUM = #{pirecordnum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetnum != null" >
+        ASSETNUM = #{assetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="pidate != null" >
+        PIDATE = #{pidate,jdbcType=DATE},
+      </if>
+      <if test="isstop != null" >
+        ISSTOP = #{isstop,jdbcType=INTEGER},
+      </if>
+      <if test="plateform != null" >
+        PLATEFORM = #{plateform,jdbcType=VARCHAR},
+      </if>
+      <if test="pirecordlinenum != null" >
+        PIRECORDLINENUM = #{pirecordlinenum,jdbcType=INTEGER},
+      </if>
+      <if test="partloc != null" >
+        PARTLOC = #{partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        METHOD = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        STANDARD = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        PERIOD = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="record != null" >
+        RECORD = #{record,jdbcType=VARCHAR},
+      </if>
+      <if test="undone != null" >
+        UNDONE = #{undone,jdbcType=INTEGER},
+      </if>
+      <if test="readstatus != null" >
+        READSTATUS = #{readstatus,jdbcType=INTEGER},
+      </if>
+      <if test="readtime != null" >
+        READTIME = #{readtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opstatus != null" >
+        OPSTATUS = #{opstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        SITEID = #{siteid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        ORGID = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadflag != null" >
+        UPLOADFLAG = #{uploadflag,jdbcType=BIT},
+      </if>
+      <if test="uploadtime != null" >
+        UPLOADTIME = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="action != null" >
+        ACTION = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="actiontime != null" >
+        ACTIONTIME = #{actiontime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RECORDMIDUNID = #{recordmidunid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjc.ssm.pojo.Recordmid" >
+    update recordmid
+    set DEPARTMENT = #{department,jdbcType=VARCHAR},
+      PIPROFESSION = #{piprofession,jdbcType=VARCHAR},
+      PITYPE = #{pitype,jdbcType=VARCHAR},
+      PIPLANNUM = #{piplannum,jdbcType=VARCHAR},
+      PIPLANDATE = #{piplandate,jdbcType=DATE},
+      PIBY = #{piby,jdbcType=VARCHAR},
+      ENTERBY = #{enterby,jdbcType=VARCHAR},
+      ENTERDATE = #{enterdate,jdbcType=TIMESTAMP},
+      PIRECORDNUM = #{pirecordnum,jdbcType=VARCHAR},
+      ASSETNUM = #{assetnum,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      PIDATE = #{pidate,jdbcType=DATE},
+      ISSTOP = #{isstop,jdbcType=INTEGER},
+      PLATEFORM = #{plateform,jdbcType=VARCHAR},
+      PIRECORDLINENUM = #{pirecordlinenum,jdbcType=INTEGER},
+      PARTLOC = #{partloc,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      METHOD = #{method,jdbcType=VARCHAR},
+      STANDARD = #{standard,jdbcType=VARCHAR},
+      PERIOD = #{period,jdbcType=VARCHAR},
+      RESULT = #{result,jdbcType=VARCHAR},
+      RECORD = #{record,jdbcType=VARCHAR},
+      UNDONE = #{undone,jdbcType=INTEGER},
+      READSTATUS = #{readstatus,jdbcType=INTEGER},
+      READTIME = #{readtime,jdbcType=TIMESTAMP},
+      OPSTATUS = #{opstatus,jdbcType=VARCHAR},
+      SITEID = #{siteid,jdbcType=VARCHAR},
+      ORGID = #{orgid,jdbcType=VARCHAR},
+      UPLOADFLAG = #{uploadflag,jdbcType=BIT},
+      UPLOADTIME = #{uploadtime,jdbcType=TIMESTAMP},
+      ACTION = #{action,jdbcType=VARCHAR},
+      ACTIONTIME = #{actiontime,jdbcType=TIMESTAMP}
+    where RECORDMIDUNID = #{recordmidunid,jdbcType=INTEGER}
+  </update>
+</mapper>

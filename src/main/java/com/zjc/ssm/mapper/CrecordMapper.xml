@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjc.ssm.mapper.CrecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zjc.ssm.pojo.Crecord" >
+    <id column="UNIDCRECORD" property="unidcrecord" jdbcType="INTEGER" />
+    <result column="CPLANNUM" property="cplannum" jdbcType="VARCHAR" />
+    <result column="ASSETNUM" property="assetnum" jdbcType="VARCHAR" />
+    <result column="CLINENUM" property="clinenum" jdbcType="INTEGER" />
+    <result column="PARTLOC" property="partloc" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="STANDARD" property="standard" jdbcType="VARCHAR" />
+    <result column="RESULT1" property="result1" jdbcType="VARCHAR" />
+    <result column="RECORD1" property="record1" jdbcType="VARCHAR" />
+    <result column="TIME1" property="time1" jdbcType="TIMESTAMP" />
+    <result column="RESULT2" property="result2" jdbcType="VARCHAR" />
+    <result column="RECORD2" property="record2" jdbcType="VARCHAR" />
+    <result column="TIME2" property="time2" jdbcType="TIMESTAMP" />
+    <result column="RESULT3" property="result3" jdbcType="VARCHAR" />
+    <result column="RECORD3" property="record3" jdbcType="VARCHAR" />
+    <result column="TIME3" property="time3" jdbcType="TIMESTAMP" />
+    <result column="RESULT4" property="result4" jdbcType="VARCHAR" />
+    <result column="RECORD4" property="record4" jdbcType="VARCHAR" />
+    <result column="TIME4" property="time4" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UNIDCRECORD, CPLANNUM, ASSETNUM, CLINENUM, PARTLOC, CONTENT, STANDARD, RESULT1, RECORD1, 
+    TIME1, RESULT2, RECORD2, TIME2, RESULT3, RECORD3, TIME3, RESULT4, RECORD4, TIME4
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zjc.ssm.pojo.CrecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from crecord
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from crecord
+    where UNIDCRECORD = #{unidcrecord,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from crecord
+    where UNIDCRECORD = #{unidcrecord,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zjc.ssm.pojo.CrecordExample" >
+    delete from crecord
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjc.ssm.pojo.Crecord" >
+    insert into crecord (UNIDCRECORD, CPLANNUM, ASSETNUM, 
+      CLINENUM, PARTLOC, CONTENT, 
+      STANDARD, RESULT1, RECORD1, 
+      TIME1, RESULT2, RECORD2, 
+      TIME2, RESULT3, RECORD3, 
+      TIME3, RESULT4, RECORD4, 
+      TIME4)
+    values (#{unidcrecord,jdbcType=INTEGER}, #{cplannum,jdbcType=VARCHAR}, #{assetnum,jdbcType=VARCHAR}, 
+      #{clinenum,jdbcType=INTEGER}, #{partloc,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{standard,jdbcType=VARCHAR}, #{result1,jdbcType=VARCHAR}, #{record1,jdbcType=VARCHAR}, 
+      #{time1,jdbcType=TIMESTAMP}, #{result2,jdbcType=VARCHAR}, #{record2,jdbcType=VARCHAR}, 
+      #{time2,jdbcType=TIMESTAMP}, #{result3,jdbcType=VARCHAR}, #{record3,jdbcType=VARCHAR}, 
+      #{time3,jdbcType=TIMESTAMP}, #{result4,jdbcType=VARCHAR}, #{record4,jdbcType=VARCHAR}, 
+      #{time4,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjc.ssm.pojo.Crecord" >
+    insert into crecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unidcrecord != null" >
+        UNIDCRECORD,
+      </if>
+      <if test="cplannum != null" >
+        CPLANNUM,
+      </if>
+      <if test="assetnum != null" >
+        ASSETNUM,
+      </if>
+      <if test="clinenum != null" >
+        CLINENUM,
+      </if>
+      <if test="partloc != null" >
+        PARTLOC,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="standard != null" >
+        STANDARD,
+      </if>
+      <if test="result1 != null" >
+        RESULT1,
+      </if>
+      <if test="record1 != null" >
+        RECORD1,
+      </if>
+      <if test="time1 != null" >
+        TIME1,
+      </if>
+      <if test="result2 != null" >
+        RESULT2,
+      </if>
+      <if test="record2 != null" >
+        RECORD2,
+      </if>
+      <if test="time2 != null" >
+        TIME2,
+      </if>
+      <if test="result3 != null" >
+        RESULT3,
+      </if>
+      <if test="record3 != null" >
+        RECORD3,
+      </if>
+      <if test="time3 != null" >
+        TIME3,
+      </if>
+      <if test="result4 != null" >
+        RESULT4,
+      </if>
+      <if test="record4 != null" >
+        RECORD4,
+      </if>
+      <if test="time4 != null" >
+        TIME4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unidcrecord != null" >
+        #{unidcrecord,jdbcType=INTEGER},
+      </if>
+      <if test="cplannum != null" >
+        #{cplannum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetnum != null" >
+        #{assetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="clinenum != null" >
+        #{clinenum,jdbcType=INTEGER},
+      </if>
+      <if test="partloc != null" >
+        #{partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="result1 != null" >
+        #{result1,jdbcType=VARCHAR},
+      </if>
+      <if test="record1 != null" >
+        #{record1,jdbcType=VARCHAR},
+      </if>
+      <if test="time1 != null" >
+        #{time1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result2 != null" >
+        #{result2,jdbcType=VARCHAR},
+      </if>
+      <if test="record2 != null" >
+        #{record2,jdbcType=VARCHAR},
+      </if>
+      <if test="time2 != null" >
+        #{time2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result3 != null" >
+        #{result3,jdbcType=VARCHAR},
+      </if>
+      <if test="record3 != null" >
+        #{record3,jdbcType=VARCHAR},
+      </if>
+      <if test="time3 != null" >
+        #{time3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result4 != null" >
+        #{result4,jdbcType=VARCHAR},
+      </if>
+      <if test="record4 != null" >
+        #{record4,jdbcType=VARCHAR},
+      </if>
+      <if test="time4 != null" >
+        #{time4,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjc.ssm.pojo.CrecordExample" resultType="java.lang.Integer" >
+    select count(*) from crecord
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update crecord
+    <set >
+      <if test="record.unidcrecord != null" >
+        UNIDCRECORD = #{record.unidcrecord,jdbcType=INTEGER},
+      </if>
+      <if test="record.cplannum != null" >
+        CPLANNUM = #{record.cplannum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetnum != null" >
+        ASSETNUM = #{record.assetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clinenum != null" >
+        CLINENUM = #{record.clinenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.partloc != null" >
+        PARTLOC = #{record.partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standard != null" >
+        STANDARD = #{record.standard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.result1 != null" >
+        RESULT1 = #{record.result1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.record1 != null" >
+        RECORD1 = #{record.record1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time1 != null" >
+        TIME1 = #{record.time1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.result2 != null" >
+        RESULT2 = #{record.result2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.record2 != null" >
+        RECORD2 = #{record.record2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time2 != null" >
+        TIME2 = #{record.time2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.result3 != null" >
+        RESULT3 = #{record.result3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.record3 != null" >
+        RECORD3 = #{record.record3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time3 != null" >
+        TIME3 = #{record.time3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.result4 != null" >
+        RESULT4 = #{record.result4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.record4 != null" >
+        RECORD4 = #{record.record4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time4 != null" >
+        TIME4 = #{record.time4,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update crecord
+    set UNIDCRECORD = #{record.unidcrecord,jdbcType=INTEGER},
+      CPLANNUM = #{record.cplannum,jdbcType=VARCHAR},
+      ASSETNUM = #{record.assetnum,jdbcType=VARCHAR},
+      CLINENUM = #{record.clinenum,jdbcType=INTEGER},
+      PARTLOC = #{record.partloc,jdbcType=VARCHAR},
+      CONTENT = #{record.content,jdbcType=VARCHAR},
+      STANDARD = #{record.standard,jdbcType=VARCHAR},
+      RESULT1 = #{record.result1,jdbcType=VARCHAR},
+      RECORD1 = #{record.record1,jdbcType=VARCHAR},
+      TIME1 = #{record.time1,jdbcType=TIMESTAMP},
+      RESULT2 = #{record.result2,jdbcType=VARCHAR},
+      RECORD2 = #{record.record2,jdbcType=VARCHAR},
+      TIME2 = #{record.time2,jdbcType=TIMESTAMP},
+      RESULT3 = #{record.result3,jdbcType=VARCHAR},
+      RECORD3 = #{record.record3,jdbcType=VARCHAR},
+      TIME3 = #{record.time3,jdbcType=TIMESTAMP},
+      RESULT4 = #{record.result4,jdbcType=VARCHAR},
+      RECORD4 = #{record.record4,jdbcType=VARCHAR},
+      TIME4 = #{record.time4,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjc.ssm.pojo.Crecord" >
+    update crecord
+    <set >
+      <if test="cplannum != null" >
+        CPLANNUM = #{cplannum,jdbcType=VARCHAR},
+      </if>
+      <if test="assetnum != null" >
+        ASSETNUM = #{assetnum,jdbcType=VARCHAR},
+      </if>
+      <if test="clinenum != null" >
+        CLINENUM = #{clinenum,jdbcType=INTEGER},
+      </if>
+      <if test="partloc != null" >
+        PARTLOC = #{partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        STANDARD = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="result1 != null" >
+        RESULT1 = #{result1,jdbcType=VARCHAR},
+      </if>
+      <if test="record1 != null" >
+        RECORD1 = #{record1,jdbcType=VARCHAR},
+      </if>
+      <if test="time1 != null" >
+        TIME1 = #{time1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result2 != null" >
+        RESULT2 = #{result2,jdbcType=VARCHAR},
+      </if>
+      <if test="record2 != null" >
+        RECORD2 = #{record2,jdbcType=VARCHAR},
+      </if>
+      <if test="time2 != null" >
+        TIME2 = #{time2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result3 != null" >
+        RESULT3 = #{result3,jdbcType=VARCHAR},
+      </if>
+      <if test="record3 != null" >
+        RECORD3 = #{record3,jdbcType=VARCHAR},
+      </if>
+      <if test="time3 != null" >
+        TIME3 = #{time3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result4 != null" >
+        RESULT4 = #{result4,jdbcType=VARCHAR},
+      </if>
+      <if test="record4 != null" >
+        RECORD4 = #{record4,jdbcType=VARCHAR},
+      </if>
+      <if test="time4 != null" >
+        TIME4 = #{time4,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where UNIDCRECORD = #{unidcrecord,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjc.ssm.pojo.Crecord" >
+    update crecord
+    set CPLANNUM = #{cplannum,jdbcType=VARCHAR},
+      ASSETNUM = #{assetnum,jdbcType=VARCHAR},
+      CLINENUM = #{clinenum,jdbcType=INTEGER},
+      PARTLOC = #{partloc,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      STANDARD = #{standard,jdbcType=VARCHAR},
+      RESULT1 = #{result1,jdbcType=VARCHAR},
+      RECORD1 = #{record1,jdbcType=VARCHAR},
+      TIME1 = #{time1,jdbcType=TIMESTAMP},
+      RESULT2 = #{result2,jdbcType=VARCHAR},
+      RECORD2 = #{record2,jdbcType=VARCHAR},
+      TIME2 = #{time2,jdbcType=TIMESTAMP},
+      RESULT3 = #{result3,jdbcType=VARCHAR},
+      RECORD3 = #{record3,jdbcType=VARCHAR},
+      TIME3 = #{time3,jdbcType=TIMESTAMP},
+      RESULT4 = #{result4,jdbcType=VARCHAR},
+      RECORD4 = #{record4,jdbcType=VARCHAR},
+      TIME4 = #{time4,jdbcType=TIMESTAMP}
+    where UNIDCRECORD = #{unidcrecord,jdbcType=INTEGER}
+  </update>
+</mapper>

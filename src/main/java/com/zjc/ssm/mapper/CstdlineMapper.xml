@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjc.ssm.mapper.CstdlineMapper" >
+  <resultMap id="BaseResultMap" type="com.zjc.ssm.pojo.Cstdline" >
+    <id column="UNID" property="unid" jdbcType="INTEGER" />
+    <result column="CSTDNUM" property="cstdnum" jdbcType="VARCHAR" />
+    <result column="CLINENUM" property="clinenum" jdbcType="INTEGER" />
+    <result column="PARTLOC" property="partloc" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="STANDARD" property="standard" jdbcType="VARCHAR" />
+    <result column="CONTENTFLAG" property="contentflag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UNID, CSTDNUM, CLINENUM, PARTLOC, CONTENT, STANDARD, CONTENTFLAG
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zjc.ssm.pojo.CstdlineExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cstdline
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cstdline
+    where UNID = #{unid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cstdline
+    where UNID = #{unid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zjc.ssm.pojo.CstdlineExample" >
+    delete from cstdline
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjc.ssm.pojo.Cstdline" >
+    insert into cstdline (UNID, CSTDNUM, CLINENUM, 
+      PARTLOC, CONTENT, STANDARD, 
+      CONTENTFLAG)
+    values (#{unid,jdbcType=INTEGER}, #{cstdnum,jdbcType=VARCHAR}, #{clinenum,jdbcType=INTEGER}, 
+      #{partloc,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{standard,jdbcType=VARCHAR}, 
+      #{contentflag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjc.ssm.pojo.Cstdline" >
+    insert into cstdline
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unid != null" >
+        UNID,
+      </if>
+      <if test="cstdnum != null" >
+        CSTDNUM,
+      </if>
+      <if test="clinenum != null" >
+        CLINENUM,
+      </if>
+      <if test="partloc != null" >
+        PARTLOC,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="standard != null" >
+        STANDARD,
+      </if>
+      <if test="contentflag != null" >
+        CONTENTFLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unid != null" >
+        #{unid,jdbcType=INTEGER},
+      </if>
+      <if test="cstdnum != null" >
+        #{cstdnum,jdbcType=VARCHAR},
+      </if>
+      <if test="clinenum != null" >
+        #{clinenum,jdbcType=INTEGER},
+      </if>
+      <if test="partloc != null" >
+        #{partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="contentflag != null" >
+        #{contentflag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjc.ssm.pojo.CstdlineExample" resultType="java.lang.Integer" >
+    select count(*) from cstdline
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cstdline
+    <set >
+      <if test="record.unid != null" >
+        UNID = #{record.unid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cstdnum != null" >
+        CSTDNUM = #{record.cstdnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clinenum != null" >
+        CLINENUM = #{record.clinenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.partloc != null" >
+        PARTLOC = #{record.partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standard != null" >
+        STANDARD = #{record.standard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentflag != null" >
+        CONTENTFLAG = #{record.contentflag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cstdline
+    set UNID = #{record.unid,jdbcType=INTEGER},
+      CSTDNUM = #{record.cstdnum,jdbcType=VARCHAR},
+      CLINENUM = #{record.clinenum,jdbcType=INTEGER},
+      PARTLOC = #{record.partloc,jdbcType=VARCHAR},
+      CONTENT = #{record.content,jdbcType=VARCHAR},
+      STANDARD = #{record.standard,jdbcType=VARCHAR},
+      CONTENTFLAG = #{record.contentflag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjc.ssm.pojo.Cstdline" >
+    update cstdline
+    <set >
+      <if test="cstdnum != null" >
+        CSTDNUM = #{cstdnum,jdbcType=VARCHAR},
+      </if>
+      <if test="clinenum != null" >
+        CLINENUM = #{clinenum,jdbcType=INTEGER},
+      </if>
+      <if test="partloc != null" >
+        PARTLOC = #{partloc,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null" >
+        STANDARD = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="contentflag != null" >
+        CONTENTFLAG = #{contentflag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UNID = #{unid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjc.ssm.pojo.Cstdline" >
+    update cstdline
+    set CSTDNUM = #{cstdnum,jdbcType=VARCHAR},
+      CLINENUM = #{clinenum,jdbcType=INTEGER},
+      PARTLOC = #{partloc,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      STANDARD = #{standard,jdbcType=VARCHAR},
+      CONTENTFLAG = #{contentflag,jdbcType=VARCHAR}
+    where UNID = #{unid,jdbcType=INTEGER}
+  </update>
+</mapper>
