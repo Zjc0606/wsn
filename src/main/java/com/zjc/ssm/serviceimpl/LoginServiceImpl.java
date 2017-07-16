@@ -3,16 +3,16 @@ package com.zjc.ssm.serviceimpl;
 import com.zjc.ssm.mapper.PersonMapper;
 import com.zjc.ssm.pojo.Person;
 import com.zjc.ssm.pojo.PersonExample;
-import com.zjc.ssm.service.ProLoginService;
+import com.zjc.ssm.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 /**
  * Created by zjc on 2017/5/25.
- * 专业登录service实现
+ * 工艺登录service实现
  */
-public class ProLoginServiceImpl implements ProLoginService{
+public class LoginServiceImpl implements LoginService {
     @Autowired
     private PersonMapper personMapper;
 
