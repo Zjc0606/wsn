@@ -1,10 +1,11 @@
 package com.zjc.ssm.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.zjc.ssm.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,12 +31,12 @@ public class LoginController {
     }
 
     //@RequestParam里边指定request传入参数名称和形参进行绑定。
-    @RequestMapping(value="/login",method={RequestMethod.POST,RequestMethod.GET})
+    @RequestMapping(value="/login")
     @ResponseBody
-    public String Login(String username,String password)throws Exception {
+    public JSONObject Login(String username, String password)throws Exception {
 
         //调用service根据用户名和密码判断登录信息
-        String result= proLoginService.login(username, password);
+        JSONObject result= proLoginService.login(username, password);
 
         return result;
     }
