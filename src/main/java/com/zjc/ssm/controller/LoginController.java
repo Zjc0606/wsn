@@ -1,6 +1,5 @@
 package com.zjc.ssm.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zjc.ssm.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
     @Autowired
-    LoginService proLoginService;
+    LoginService loginService;
 
     // 商品查询
     @RequestMapping("/test")
@@ -36,7 +35,7 @@ public class LoginController {
     public JSONObject Login(String username, String password)throws Exception {
 
         //调用service根据用户名和密码判断登录信息
-        JSONObject result= proLoginService.login(username, password);
+        JSONObject result= loginService.login(username, password);
 
         return result;
     }

@@ -2,8 +2,10 @@ package com.zjc.ssm.mapper;
 
 import com.zjc.ssm.pojo.Asset;
 import com.zjc.ssm.pojo.AssetExample;
-import java.util.List;
+import com.zjc.ssm.vo.AssetVo;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AssetMapper {
     int countByExample(AssetExample example);
@@ -27,4 +29,9 @@ public interface AssetMapper {
     int updateByPrimaryKeySelective(Asset record);
 
     int updateByPrimaryKey(Asset record);
+
+    /**
+     * 查询设备列表
+     */
+    public List<AssetVo> getAssets();
 }

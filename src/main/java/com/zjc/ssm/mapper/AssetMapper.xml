@@ -18,6 +18,15 @@
     <result column="ACTIONTIME" property="actiontime" jdbcType="TIMESTAMP" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
   </resultMap>
+
+  <!--查询设备列表-->
+  <select id="getAssets"  resultType="com.zjc.ssm.vo.AssetVo">
+
+    SELECT `wsn-rfidphy`.RFID rfid, `wsn-rfidphy`.PHYNUM phynum, `cstdasset`.ASSETNUM assetnum, `asset`.DESCRIPTION description,
+    `asset`.TYPE type FROM `asset` ,`cstdasset` ,`wsn-rfidphy`
+    WHERE `asset`.ASSETNUM = `cstdasset`.ASSETNUM and `asset`.ASSETNUM=`wsn-rfidphy`.ASSETNUM
+
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
