@@ -204,6 +204,25 @@
       <artifactId>druid</artifactId>
       <version>1.0.27</version>
     </dependency>
+    <!--spring与redis整合-->
+    <dependency>
+      <groupId>org.springframework.session</groupId>
+      <artifactId>spring-session-data-redis</artifactId>
+      <version>1.1.1.RELEASE</version>
+    </dependency>
+    <!--protostuff序列化依赖-->
+    <dependency>
+      <groupId>com.dyuproject.protostuff</groupId>
+      <artifactId>protostuff-core</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.dyuproject.protostuff</groupId>
+      <artifactId>protostuff-runtime</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
