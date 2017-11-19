@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjc.ssm.mapper.TaskMapper">
+
+
+<select id="findCstdnum" parameterType="String" resultType="String" >
+SELECT CSTDNUM FROM `cstdasset` WHERE ASSETNUM=#{assetnum}
+</select>
+
+<insert id="insertIntoCplan" parameterType="com.zjc.ssm.pojo.Cplan">
+	INSERT INTO `cplan` (CSTDNUM,CPLANNUM,EXECUTEBY,DRAWUPDATE,ASSETNUM,REGULAR,TYPE) 
+	      VALUES(#{0},#{1},#{2},#{3},#{4},#{5},#{6})
+</insert>
+
+
+<select id="findTask" resultType="com.zjc.ssm.vo.TaskGY">
+SELECT a.CPLANNUM,a.ASSETNUM,a.CSTDNUM,a.EXECUTEBY,a.DRAWUPDATE,a.REGULAR,a.RESULT 
+FROM cplan a,cstd c
+WHERE a.EXECUTEBY=#{0}   
+and a.CSTDNUM=c.CSTDNUM and date(a.DRAWUPDATE) = curdate() and a.REGULAR = #{1} 
+and a.TYPE =  #{2} 
+
+</select>
+<select id="findTaskStd" resultType="com.zjc.ssm.vo.TaskStdGY">
+SELECT a.CPLANNUM,a.ASSETNUM,b.CLINENUM,b.PARTLOC,b.CONTENT,b.STANDARD,b.CONTENTFLAG 
+FROM cplan a,cstdline b,cstd c WHERE a.EXECUTEBY=#{0}
+and a.CSTDNUM=b.CSTDNUM and date(a.DRAWUPDATE) = curdate() and a.CSTDNUM=c.CSTDNUM 
+and a.REGULAR = #{1}and a.TYPE = #{2}
+</select>
+
+</mapper>
+

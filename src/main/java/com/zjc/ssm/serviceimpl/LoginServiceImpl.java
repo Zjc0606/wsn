@@ -1,5 +1,6 @@
 package com.zjc.ssm.serviceimpl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zjc.ssm.mapper.AssetMapper;
 import com.zjc.ssm.mapper.PersonMapper;
@@ -36,7 +37,7 @@ public class LoginServiceImpl implements LoginService {
             //查询设备表
             List<AssetVo> assets = assetMapper.getAssets();
             result.put("msg", "SUCCESS");
-            result.put("Assets", assets);
+            result.put("Assets", JSON.toJSONString(assets));
         }else {
             result.put("msg", "密码错误");
             result.put("Assets", "");

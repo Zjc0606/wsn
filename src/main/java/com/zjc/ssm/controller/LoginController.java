@@ -48,10 +48,10 @@ public class LoginController {
     //@RequestParam里边指定request传入参数名称和形参进行绑定。
     @RequestMapping(value = "/login")
     @ResponseBody
-    public JSONObject Login(HttpServletRequest request) throws Exception {
-        HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        String password = (String) session.getAttribute("password");
+    public JSONObject Login(String username,String password) throws Exception {
+//        HttpSession session = request.getSession();
+//        String username = (String) session.getAttribute("username");
+//        String password = (String) session.getAttribute("password");
         //调用service根据用户名和密码判断登录信息
         JSONObject result = loginService.login(username, password);
 
