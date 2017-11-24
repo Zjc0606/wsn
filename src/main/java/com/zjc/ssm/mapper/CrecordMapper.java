@@ -2,8 +2,10 @@ package com.zjc.ssm.mapper;
 
 import com.zjc.ssm.pojo.Crecord;
 import com.zjc.ssm.pojo.CrecordExample;
-import java.util.List;
+import com.zjc.ssm.vo.HistoryRecordVo;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CrecordMapper {
     int countByExample(CrecordExample example);
@@ -27,4 +29,9 @@ public interface CrecordMapper {
     int updateByPrimaryKeySelective(Crecord record);
 
     int updateByPrimaryKey(Crecord record);
+
+    /**
+     * 根据条件查询历史记录
+     */
+    List<HistoryRecordVo> findHistoryRecord(String assetnum, String partname, String date, String today);
 }

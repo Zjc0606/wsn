@@ -53,9 +53,7 @@ public class LoginController {
 //        String username = (String) session.getAttribute("username");
 //        String password = (String) session.getAttribute("password");
         //调用service根据用户名和密码判断登录信息
-        JSONObject result = loginService.login(username, password);
-
-        return result;
+        return loginService.login(username, password);
     }
 
 }

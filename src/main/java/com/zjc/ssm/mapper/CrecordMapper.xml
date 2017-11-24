@@ -429,4 +429,18 @@
       TIME4 = #{time4,jdbcType=TIMESTAMP}
     where UNIDCRECORD = #{unidcrecord,jdbcType=INTEGER}
   </update>
+<!--根据条件查询历史记录-->
+  <select id="findHistoryRecord" parameterType="com.zjc.ssm.condition.HistoryRecordCondition" resultType="com.zjc.ssm.vo.HistoryRecordVo">
+    SELECT
+    c.DOREGULAR,
+    c.CONTENT,
+    IFNULL(c.RESULT1, '--') RESULT1,
+    IFNULL(c.RESULT2, '--') RESULT2,
+    IFNULL(c.RESULT3, '--') RESULT3,
+    IFNULL(c.RESULT4, '--') RESULT4
+    FROM
+    `crecord` c
+    WHERE
+    c.ASSETNUM = #{0} and c.PARTLOC=#{1} and c.DODATE BETWEEN #{2} and #{3}
+  </select>
 </mapper>

@@ -15,4 +15,5 @@
 <!-- 工艺点检service -->
 <bean id="loginService" class="com.zjc.ssm.serviceimpl.LoginServiceImpl"/>
 <bean id="taskService" class="com.zjc.ssm.serviceimpl.TaskServiceImpl"/>
+<bean id="historyRecordService" class="com.zjc.ssm.serviceimpl.HistoryRecordServiceImpl"/>
 </beans>
