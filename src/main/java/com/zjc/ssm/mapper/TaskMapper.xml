@@ -16,11 +16,11 @@ SELECT CSTDNUM FROM `cstdasset` WHERE ASSETNUM=#{assetnum}
 
 
 <select id="findTask" resultType="com.zjc.ssm.vo.TaskGY">
-SELECT a.CPLANNUM,a.ASSETNUM,a.CSTDNUM,a.EXECUTEBY,a.DRAWUPDATE,a.REGULAR,a.RESULT 
-FROM cplan a,cstd c
-WHERE a.EXECUTEBY=#{0}   
-and a.CSTDNUM=c.CSTDNUM and date(a.DRAWUPDATE) = curdate() and a.REGULAR = #{1} 
-and a.TYPE =  #{2} 
+SELECT a.CPLANNUM,a.ASSETNUM,a.CSTDNUM,a.EXECUTEBY,a.DRAWUPDATE,a.REGULAR,a.RESULT
+	FROM cplan a,cstd c
+	WHERE a.EXECUTEBY=#{0}
+	and a.CSTDNUM=c.CSTDNUM and date(a.DRAWUPDATE) = curdate() and a.REGULAR = #{1}
+	and a.TYPE =  #{2}
 
 </select>
 <select id="findTaskStd" resultType="com.zjc.ssm.vo.TaskStdGY">

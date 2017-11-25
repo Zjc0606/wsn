@@ -272,4 +272,15 @@
       TYPE = #{type,jdbcType=VARCHAR}
     where UNIDCPLAN = #{unidcplan,jdbcType=INTEGER}
   </update>
+
+  <!--更新任务计划表-->
+  <update id="updateResult" parameterType="com.zjc.ssm.pojo.Cplan">
+    UPDATE `cplan` SET RESULT=#{3},DEVICENOTE=#{4} WHERE CPLANNUM=#{0} and ASSETNUM=#{1} and EXECUTEBY=#{2}
+  </update>
+  <update id="updateResults" parameterType="com.zjc.ssm.pojo.Cplan">
+    UPDATE `cplan` SET STATUS=#{3},DEVICENOTE=#{4} WHERE CPLANNUM=#{0} and ASSETNUM=#{1} and EXECUTEBY=#{2}
+  </update>
+  <select id="findRegular" parameterType="String" resultType="String">
+    SELECT DISTINCT REGULAR FROM `cplan` WHERE CPLANNUM = #{cplannum}
+  </select>
 </mapper>

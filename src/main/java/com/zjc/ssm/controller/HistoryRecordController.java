@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,7 +15,7 @@ import java.util.Date;
 
 /**
  * @author 安徽大学.赵继传
- * @Description:
+ * @Description: 历史记录查询
  * @create 2017-11-19-14:45
  */
 @Controller
@@ -26,17 +25,20 @@ public class HistoryRecordController {
 
     @RequestMapping(value = "/historyRecord")
     @ResponseBody
-    public JSONArray getTask(HttpServletRequest request, String devicename, String partname, String date) throws Exception {
+    public JSONArray getTask(String devicename, String partname, String date) throws Exception {
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy年MM月dd日");
         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
         String today = DateFormat.getDateInstance().format(new Date());
         Date d = null;
+        String date1="";
         try{
-            d = sdf1.parse(URLDecoder.decode(date, "GB2312"));
+            if (!"".equals(date)){
+                d = sdf1.parse(URLDecoder.decode(date, "GB2312"));
+                date1 = sdf2.format(d);//获取查询起始时间
+            }
         }catch(ParseException e){
             e.printStackTrace();
         }
-        String date1 = sdf2.format(d);//获取查询起始时间
         String part = URLDecoder.decode(partname, "GB2312");
         return historyRecordService.findHistoryRecord(devicename,part , date1, today);
     }

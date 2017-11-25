@@ -443,4 +443,34 @@
     WHERE
     c.ASSETNUM = #{0} and c.PARTLOC=#{1} and c.DODATE BETWEEN #{2} and #{3}
   </select>
+  <select id="findResult1" resultType="String" parameterType="com.zjc.ssm.pojo.Crecord">
+    SELECT RESULT1 FROM `crecord` WHERE CPLANNUM=#{0} and ASSETNUM=#{1} and CLINENUM=#{2}
+  </select>
+  <select id="findResult2" resultType="String" parameterType="com.zjc.ssm.pojo.Crecord">
+    SELECT RESULT2 FROM `crecord` WHERE CPLANNUM=#{0} and ASSETNUM=#{1} and CLINENUM=#{2}
+  </select>
+  <select id="findResult3" resultType="String" parameterType="com.zjc.ssm.pojo.Crecord">
+    SELECT RESULT3 FROM `crecord` WHERE CPLANNUM=#{0} and ASSETNUM=#{1} and CLINENUM=#{2}
+  </select>
+
+  <!--插入点检记录-->
+  <update id="updateResult4" parameterType="com.zjc.ssm.pojo.Crecord">
+    UPDATE `crecord` SET RESULT4=#{0},RECORD4 = #{1},TIME4=#{2}
+    WHERE CPLANNUM=#{3} and ASSETNUM=#{4} and CLINENUM=#{5}
+  </update>
+
+  <update id="updateResult3" parameterType="com.zjc.ssm.pojo.Crecord">
+    UPDATE `crecord` SET RESULT3=#{0},RECORD3 = #{1},TIME3=#{2}
+    WHERE CPLANNUM=#{3} and ASSETNUM=#{4} and CLINENUM=#{5}
+  </update>
+
+  <update id="updateResult2" parameterType="com.zjc.ssm.pojo.Crecord">
+    UPDATE `crecord` SET RESULT2=#{0},RECORD2 = #{1},TIME2=#{2}
+    WHERE CPLANNUM=#{3} and ASSETNUM=#{4} and CLINENUM=#{5}
+  </update>
+
+  <insert id="insertIntoResult1" parameterType="com.zjc.ssm.pojo.Crecord">
+    INSERT INTO `crecord` (CPLANNUM,DODATE,DOREGULAR,ASSETNUM,CLINENUM,PARTLOC,CONTENT,STANDARD,RESULT1,RECORD1,TIME1)
+    VALUES(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10})
+  </insert>
 </mapper>

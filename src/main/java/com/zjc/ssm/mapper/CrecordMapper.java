@@ -34,4 +34,20 @@ public interface CrecordMapper {
      * 根据条件查询历史记录
      */
     List<HistoryRecordVo> findHistoryRecord(String assetnum, String partname, String date, String today);
+
+    //判断第一次点检结果是否为空
+    String findResult1(String cplannum,String assetnum,String clinenum);
+    //判断第二次点检结果是否为空
+    String findResult2(String cplannum,String assetnum,String clinenum);
+    //判断第三次点检结果是否为空
+    String findResult3(String cplannum,String assetnum,String clinenum);
+
+    /**
+     *分别插入四次点检记录
+     */
+    void insertIntoResult1(String cplannum,String dodate,String doregular,String assetnum,String clinenum,String partloc,
+                                  String content,String standard,String result,String record,String time);
+    void updateResult2(String result,String record,String time,String cplannum,String assetnum,String clinenum);
+    void updateResult3(String result,String record,String time,String cplannum,String assetnum,String clinenum);
+    void updateResult4(String result,String record,String time,String cplannum,String assetnum,String clinenum);
 }

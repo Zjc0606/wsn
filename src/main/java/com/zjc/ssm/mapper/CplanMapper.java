@@ -2,8 +2,9 @@ package com.zjc.ssm.mapper;
 
 import com.zjc.ssm.pojo.Cplan;
 import com.zjc.ssm.pojo.CplanExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CplanMapper {
     int countByExample(CplanExample example);
@@ -27,4 +28,11 @@ public interface CplanMapper {
     int updateByPrimaryKeySelective(Cplan record);
 
     int updateByPrimaryKey(Cplan record);
+
+    public void updateResult(String cplannum,String assetnum, String executeby,String result,String devicenote);
+
+    public void updateResults(String cplannum,String assetnum, String executeby,String result,String devicenote);
+
+    String findRegular(String cplannum);
+
 }
